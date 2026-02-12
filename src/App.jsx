@@ -1,4 +1,3 @@
-// App.jsx
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
@@ -34,7 +33,8 @@ import {
 	Flower
 } from 'lucide-react';
 
-// Функция для плавного скролла
+import { services } from './constants/services'
+
 const scrollToSection = (e, sectionId) => {
 	e.preventDefault();
 	const element = document.getElementById(sectionId);
@@ -61,7 +61,7 @@ const AdvantageCard = ({ advantage, index }) => {
 			onMouseLeave={() => setIsHovered(false)}
 			style={{ animationDelay: `${index * 100}ms` }}
 		>
-			{/* Анимированный фон */}
+			
 			<div className={`absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'
 				}`}></div>
 
@@ -74,7 +74,6 @@ const AdvantageCard = ({ advantage, index }) => {
 				</div>
 			</div>
 
-			{/* Анимация при наведении */}
 			{isHovered && (
 				<div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl blur opacity-10 -z-10"></div>
 			)}
@@ -91,11 +90,9 @@ const ServiceCard = ({ service }) => {
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			{/* Анимированный фон */}
 			<div className={`absolute inset-0 bg-gradient-to-br ${service.color} transition-opacity duration-500 ${isHovered ? 'opacity-10' : 'opacity-5'
 				}`}></div>
 
-			{/* Индикатор популярности */}
 			{service.popular && (
 				<div className="absolute top-4 right-4">
 					<div className="relative">
@@ -107,7 +104,6 @@ const ServiceCard = ({ service }) => {
 				</div>
 			)}
 
-			{/* Изображение услуги */}
 			<div className="h-48 relative overflow-hidden">
 				<div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-80`}></div>
 				<div className="absolute inset-0 flex items-center justify-center">
@@ -122,7 +118,6 @@ const ServiceCard = ({ service }) => {
 				</div>
 			</div>
 
-			{/* Контент */}
 			<div className="p-6 relative">
 				<h3 className="text-xl font-bold text-gray-900 mb-2 font-['Playfair_Display']">{service.title}</h3>
 				<p className="text-gray-600 mb-4 leading-relaxed font-['Inter']">{service.description}</p>
@@ -146,44 +141,7 @@ const ServiceCard = ({ service }) => {
 	);
 };
 
-// Данные услуг
-const services = [
-	{
-		id: 1,
-		title: "Классический шугаринг",
-		description: "Быстрое и эффективное удаление волос с любых зон с использованием профессиональной сахарной пасты",
-		price: "от 800 ₽",
-		duration: "15-60 мин",
-		popular: true,
-		color: "from-purple-500 to-pink-500"
-	},
-	{
-		id: 2,
-		title: "Глубокое бикини",
-		description: "Максимально точное и бережное удаление волос в интимной зоне",
-		price: "от 1500 ₽",
-		duration: "30-45 мин",
-		popular: true,
-		color: "from-rose-500 to-orange-500"
-	},
-	{
-		id: 3,
-		title: "Шугаринг лица",
-		description: "Аккуратное удаление волос на лице с уходом после процедуры",
-		price: "от 500 ₽",
-		duration: "10-20 мин",
-		color: "from-blue-500 to-cyan-500"
-	},
-	{
-		id: 4,
-		title: "Комплексные программы",
-		description: "Выгодные пакеты услуг для комплексного ухода",
-		price: "от 2500 ₽",
-		duration: "60-120 мин",
-		popular: true,
-		color: "from-emerald-500 to-teal-500"
-	}
-];
+
 
 // Преимущества
 const advantages = [
@@ -257,132 +215,132 @@ const SubscriptionCard = ({ plan, isPopular }) => {
 	);
 }
 
-// const AnimatedForm = () => {
-// 	const [isSubmitting, setIsSubmitting] = useState(false);
-// 	const [submitSuccess, setSubmitSuccess] = useState(false);
-// 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
+const AnimatedForm = () => {
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitSuccess, setSubmitSuccess] = useState(false);
+	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-// 	const onSubmit = async (data) => {
-// 		setIsSubmitting(true);
-// 		setTimeout(() => {
-// 			setIsSubmitting(false);
-// 			setSubmitSuccess(true);
-// 			reset();
-// 			setTimeout(() => setSubmitSuccess(false), 5000);
-// 		}, 1500);
-// 	};
+	const onSubmit = async (data) => {
+		setIsSubmitting(true);
+		setTimeout(() => {
+			setIsSubmitting(false);
+			setSubmitSuccess(true);
+			reset();
+			setTimeout(() => setSubmitSuccess(false), 5000);
+		}, 1500);
+	};
 
-// 	return (
-// 		<div className="relative rounded-3xl overflow-hidden">
-// 			{/* Анимированный фон формы */}
-// 			<div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-rose-500/5">
-// 				<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
-// 				<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500/20 to-transparent"></div>
-// 			</div>
+	return (
+		<div className="relative rounded-3xl overflow-hidden">
+			{/* Анимированный фон формы */}
+			<div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-rose-500/5">
+				<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
+				<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500/20 to-transparent"></div>
+			</div>
 
-// 			<div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-purple-100">
-// 				<h3 className="text-2xl font-bold text-gray-900 mb-2 font-['Playfair_Display']">Онлайн-запись</h3>
-// 				<p className="text-gray-600 mb-6 font-['Inter']">Заполните форму и я свяжусь с вами в течение 15 минут</p>
+			<div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-purple-100">
+				<h3 className="text-2xl font-bold text-gray-900 mb-2 font-['Playfair_Display']">Онлайн-запись</h3>
+				<p className="text-gray-600 mb-6 font-['Inter']">Заполните форму и я свяжусь с вами в течение 15 минут</p>
 
-// 				{submitSuccess ? (
-// 					<div className="text-center py-12">
-// 						<div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full flex items-center justify-center animate-bounce">
-// 							<CheckCircle size={40} className="text-white" />
-// 						</div>
-// 						<h4 className="text-2xl font-bold text-gray-900 mb-3 font-['Playfair_Display']">Заявка отправлена!</h4>
-// 						<p className="text-gray-600 mb-8 font-['Inter']">Я свяжусь с вами в ближайшее время для подтверждения записи</p>
-// 						<button
-// 							onClick={() => setSubmitSuccess(false)}
-// 							className="text-purple-600 hover:text-purple-700 font-medium underline font-['Inter']"
-// 						>
-// 							Отправить еще одну заявку
-// 						</button>
-// 					</div>
-// 				) : (
-// 					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-// 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-// 							<div>
-// 								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Ваше имя *</label>
-// 								<input
-// 									type="text"
-// 									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.name
-// 										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
-// 										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
-// 										}`}
-// 									placeholder="Имя"
-// 									{...register("name", { required: "Введите ваше имя" })}
-// 								/>
-// 							</div>
+				{submitSuccess ? (
+					<div className="text-center py-12">
+						<div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full flex items-center justify-center animate-bounce">
+							<CheckCircle size={40} className="text-white" />
+						</div>
+						<h4 className="text-2xl font-bold text-gray-900 mb-3 font-['Playfair_Display']">Заявка отправлена!</h4>
+						<p className="text-gray-600 mb-8 font-['Inter']">Я свяжусь с вами в ближайшее время для подтверждения записи</p>
+						<button
+							onClick={() => setSubmitSuccess(false)}
+							className="text-purple-600 hover:text-purple-700 font-medium underline font-['Inter']"
+						>
+							Отправить еще одну заявку
+						</button>
+					</div>
+				) : (
+					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Ваше имя *</label>
+								<input
+									type="text"
+									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.name
+										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
+										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+										}`}
+									placeholder="Имя"
+									{...register("name", { required: "Введите ваше имя" })}
+								/>
+							</div>
 
-// 							<div>
-// 								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Телефон *</label>
-// 								<input
-// 									type="tel"
-// 									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.phone
-// 										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
-// 										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
-// 										}`}
-// 									placeholder="+7 (___) ___-__-__"
-// 									{...register("phone", {
-// 										required: "Введите телефон",
-// 										pattern: {
-// 											value: /^[+]?[7-8]?[0-9]{10}$/,
-// 											message: "Введите корректный номер"
-// 										}
-// 									})}
-// 								/>
-// 							</div>
-// 						</div>
+							<div>
+								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Телефон *</label>
+								<input
+									type="tel"
+									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.phone
+										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
+										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+										}`}
+									placeholder="+7 (___) ___-__-__"
+									{...register("phone", {
+										required: "Введите телефон",
+										pattern: {
+											value: /^[+]?[7-8]?[0-9]{10}$/,
+											message: "Введите корректный номер"
+										}
+									})}
+								/>
+							</div>
+						</div>
 
-// 						<div>
-// 							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Услуга</label>
-// 							<select
-// 								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all font-['Inter']"
-// 								{...register("service")}
-// 							>
-// 								<option value="">Выберите услугу</option>
-// 								{services.map(service => (
-// 									<option key={service.id} value={service.title}>{service.title}</option>
-// 								))}
-// 							</select>
-// 						</div>
+						<div>
+							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Услуга</label>
+							<select
+								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all font-['Inter']"
+								{...register("service")}
+							>
+								<option value="">Выберите услугу</option>
+								{services.map(service => (
+									<option key={service.id} value={service.title}>{service.title}</option>
+								))}
+							</select>
+						</div>
 
-// 						<div>
-// 							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Сообщение</label>
-// 							<textarea
-// 								rows="4"
-// 								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all resize-none font-['Inter']"
-// 								placeholder="Укажите удобные дату и время, зону для процедуры или задайте вопрос..."
-// 								{...register("message")}
-// 							></textarea>
-// 						</div>
+						<div>
+							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Сообщение</label>
+							<textarea
+								rows="4"
+								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all resize-none font-['Inter']"
+								placeholder="Укажите удобные дату и время, зону для процедуры или задайте вопрос..."
+								{...register("message")}
+							></textarea>
+						</div>
 
-// 						<button
-// 							type="submit"
-// 							disabled={isSubmitting}
-// 							className="group relative w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-medium text-lg hover:shadow-xl hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed font-['Inter']"
-// 						>
-// 							<div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-// 							<div className="relative z-10 flex items-center justify-center">
-// 								{isSubmitting ? (
-// 									<>
-// 										<div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
-// 										Отправка...
-// 									</>
-// 								) : (
-// 									<>
-// 										<Sparkles className="mr-3 group-hover:animate-pulse" />
-// 										Отправить заявку
-// 									</>
-// 								)}
-// 							</div>
-// 						</button>
-// 					</form>
-// 				)}
-// 			</div>
-// 		</div>
-// 	);
-// };
+						<button
+							type="submit"
+							disabled={isSubmitting}
+							className="group relative w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-medium text-lg hover:shadow-xl hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed font-['Inter']"
+						>
+							<div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+							<div className="relative z-10 flex items-center justify-center">
+								{isSubmitting ? (
+									<>
+										<div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+										Отправка...
+									</>
+								) : (
+									<>
+										<Sparkles className="mr-3 group-hover:animate-pulse" />
+										Отправить заявку
+									</>
+								)}
+							</div>
+						</button>
+					</form>
+				)}
+			</div>
+		</div>
+	);
+};
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1006,7 +964,6 @@ function App() {
 						</div>
 					</div>
 
-					{/* Форма */}
 					<AnimatedForm />
 				</div>
 			</section>
