@@ -257,132 +257,132 @@ const SubscriptionCard = ({ plan, isPopular }) => {
 	);
 }
 
-const AnimatedForm = () => {
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitSuccess, setSubmitSuccess] = useState(false);
-	const { register, handleSubmit, formState: { errors }, reset } = useForm();
+// const AnimatedForm = () => {
+// 	const [isSubmitting, setIsSubmitting] = useState(false);
+// 	const [submitSuccess, setSubmitSuccess] = useState(false);
+// 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-	const onSubmit = async (data) => {
-		setIsSubmitting(true);
-		setTimeout(() => {
-			setIsSubmitting(false);
-			setSubmitSuccess(true);
-			reset();
-			setTimeout(() => setSubmitSuccess(false), 5000);
-		}, 1500);
-	};
+// 	const onSubmit = async (data) => {
+// 		setIsSubmitting(true);
+// 		setTimeout(() => {
+// 			setIsSubmitting(false);
+// 			setSubmitSuccess(true);
+// 			reset();
+// 			setTimeout(() => setSubmitSuccess(false), 5000);
+// 		}, 1500);
+// 	};
 
-	return (
-		<div className="relative rounded-3xl overflow-hidden">
-			{/* Анимированный фон формы */}
-			<div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-rose-500/5">
-				<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
-				<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500/20 to-transparent"></div>
-			</div>
+// 	return (
+// 		<div className="relative rounded-3xl overflow-hidden">
+// 			{/* Анимированный фон формы */}
+// 			<div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-rose-500/5">
+// 				<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
+// 				<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pink-500/20 to-transparent"></div>
+// 			</div>
 
-			<div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-purple-100">
-				<h3 className="text-2xl font-bold text-gray-900 mb-2 font-['Playfair_Display']">Онлайн-запись</h3>
-				<p className="text-gray-600 mb-6 font-['Inter']">Заполните форму и я свяжусь с вами в течение 15 минут</p>
+// 			<div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-purple-100">
+// 				<h3 className="text-2xl font-bold text-gray-900 mb-2 font-['Playfair_Display']">Онлайн-запись</h3>
+// 				<p className="text-gray-600 mb-6 font-['Inter']">Заполните форму и я свяжусь с вами в течение 15 минут</p>
 
-				{submitSuccess ? (
-					<div className="text-center py-12">
-						<div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full flex items-center justify-center animate-bounce">
-							<CheckCircle size={40} className="text-white" />
-						</div>
-						<h4 className="text-2xl font-bold text-gray-900 mb-3 font-['Playfair_Display']">Заявка отправлена!</h4>
-						<p className="text-gray-600 mb-8 font-['Inter']">Я свяжусь с вами в ближайшее время для подтверждения записи</p>
-						<button
-							onClick={() => setSubmitSuccess(false)}
-							className="text-purple-600 hover:text-purple-700 font-medium underline font-['Inter']"
-						>
-							Отправить еще одну заявку
-						</button>
-					</div>
-				) : (
-					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<div>
-								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Ваше имя *</label>
-								<input
-									type="text"
-									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.name
-										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
-										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
-										}`}
-									placeholder="Имя"
-									{...register("name", { required: "Введите ваше имя" })}
-								/>
-							</div>
+// 				{submitSuccess ? (
+// 					<div className="text-center py-12">
+// 						<div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full flex items-center justify-center animate-bounce">
+// 							<CheckCircle size={40} className="text-white" />
+// 						</div>
+// 						<h4 className="text-2xl font-bold text-gray-900 mb-3 font-['Playfair_Display']">Заявка отправлена!</h4>
+// 						<p className="text-gray-600 mb-8 font-['Inter']">Я свяжусь с вами в ближайшее время для подтверждения записи</p>
+// 						<button
+// 							onClick={() => setSubmitSuccess(false)}
+// 							className="text-purple-600 hover:text-purple-700 font-medium underline font-['Inter']"
+// 						>
+// 							Отправить еще одну заявку
+// 						</button>
+// 					</div>
+// 				) : (
+// 					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+// 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+// 							<div>
+// 								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Ваше имя *</label>
+// 								<input
+// 									type="text"
+// 									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.name
+// 										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
+// 										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+// 										}`}
+// 									placeholder="Имя"
+// 									{...register("name", { required: "Введите ваше имя" })}
+// 								/>
+// 							</div>
 
-							<div>
-								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Телефон *</label>
-								<input
-									type="tel"
-									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.phone
-										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
-										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
-										}`}
-									placeholder="+7 (___) ___-__-__"
-									{...register("phone", {
-										required: "Введите телефон",
-										pattern: {
-											value: /^[+]?[7-8]?[0-9]{10}$/,
-											message: "Введите корректный номер"
-										}
-									})}
-								/>
-							</div>
-						</div>
+// 							<div>
+// 								<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Телефон *</label>
+// 								<input
+// 									type="tel"
+// 									className={`w-full px-4 py-3.5 rounded-xl border focus:outline-none focus:ring-2 transition-all font-['Inter'] ${errors.phone
+// 										? 'border-rose-300 bg-rose-50 focus:ring-rose-500 focus:border-rose-500'
+// 										: 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+// 										}`}
+// 									placeholder="+7 (___) ___-__-__"
+// 									{...register("phone", {
+// 										required: "Введите телефон",
+// 										pattern: {
+// 											value: /^[+]?[7-8]?[0-9]{10}$/,
+// 											message: "Введите корректный номер"
+// 										}
+// 									})}
+// 								/>
+// 							</div>
+// 						</div>
 
-						<div>
-							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Услуга</label>
-							<select
-								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all font-['Inter']"
-								{...register("service")}
-							>
-								<option value="">Выберите услугу</option>
-								{services.map(service => (
-									<option key={service.id} value={service.title}>{service.title}</option>
-								))}
-							</select>
-						</div>
+// 						<div>
+// 							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Услуга</label>
+// 							<select
+// 								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all font-['Inter']"
+// 								{...register("service")}
+// 							>
+// 								<option value="">Выберите услугу</option>
+// 								{services.map(service => (
+// 									<option key={service.id} value={service.title}>{service.title}</option>
+// 								))}
+// 							</select>
+// 						</div>
 
-						<div>
-							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Сообщение</label>
-							<textarea
-								rows="4"
-								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all resize-none font-['Inter']"
-								placeholder="Укажите удобные дату и время, зону для процедуры или задайте вопрос..."
-								{...register("message")}
-							></textarea>
-						</div>
+// 						<div>
+// 							<label className="block text-gray-700 mb-2 font-medium font-['Inter']">Сообщение</label>
+// 							<textarea
+// 								rows="4"
+// 								className="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all resize-none font-['Inter']"
+// 								placeholder="Укажите удобные дату и время, зону для процедуры или задайте вопрос..."
+// 								{...register("message")}
+// 							></textarea>
+// 						</div>
 
-						<button
-							type="submit"
-							disabled={isSubmitting}
-							className="group relative w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-medium text-lg hover:shadow-xl hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed font-['Inter']"
-						>
-							<div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-							<div className="relative z-10 flex items-center justify-center">
-								{isSubmitting ? (
-									<>
-										<div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
-										Отправка...
-									</>
-								) : (
-									<>
-										<Sparkles className="mr-3 group-hover:animate-pulse" />
-										Отправить заявку
-									</>
-								)}
-							</div>
-						</button>
-					</form>
-				)}
-			</div>
-		</div>
-	);
-};
+// 						<button
+// 							type="submit"
+// 							disabled={isSubmitting}
+// 							className="group relative w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-medium text-lg hover:shadow-xl hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed font-['Inter']"
+// 						>
+// 							<div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+// 							<div className="relative z-10 flex items-center justify-center">
+// 								{isSubmitting ? (
+// 									<>
+// 										<div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3"></div>
+// 										Отправка...
+// 									</>
+// 								) : (
+// 									<>
+// 										<Sparkles className="mr-3 group-hover:animate-pulse" />
+// 										Отправить заявку
+// 									</>
+// 								)}
+// 							</div>
+// 						</button>
+// 					</form>
+// 				)}
+// 			</div>
+// 		</div>
+// 	);
+// };
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -968,8 +968,8 @@ function App() {
 									<Mail className="text-purple-600" size={24} />
 								</div>
 								<div className="text-gray-600 text-sm mb-1 font-['Inter']">Email</div>
-								<a href="mailto:anna@businesscardsugaring.ru" className="text-xl font-bold text-gray-900 hover:text-purple-600 transition-colors font-['Inter']">
-									anna@businesscardsugaring.ru
+								<a href="mailto:anna@glowsculpt.ru" className="text-xl font-bold text-gray-900 hover:text-purple-600 transition-colors font-['Inter']">
+									anna@glowsculpt.ru
 								</a>
 							</div>
 
